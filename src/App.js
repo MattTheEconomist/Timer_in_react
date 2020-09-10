@@ -3,6 +3,8 @@ import './App.css';
 import  { csv } from 'd3';
 import * as d3 from'd3';
 import Bar from './charts/bar.js'
+import BarNext from './charts/bar2.js'
+
 import data from './CRA.csv';
 // import FilterReturnTotals from './filterReturnTotals.js'
 
@@ -59,8 +61,8 @@ function App() {
           <h2>Postal Dashboard</h2>
           <h5></h5>
 
-        <Bar  width={200} height={200} inputData={mmData} other={otherObj} />
-
+        {/* <Bar  width={200} height={200} inputData={mmData} other={otherObj} /> */}
+        <BarNext  width={200} height={200} inputData={mmData} other={otherObj} />
     </div>
     
   )
