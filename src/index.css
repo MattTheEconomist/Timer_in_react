@@ -12,3 +12,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.barChart{
+  margin: 100px
+}
+
+.chartArea{
+  background-color: white;
+  /* padding: 10px; */
+  /* display: inline-block */
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+.barArea{
+  /* float: right;  */
+  /* flex:2 */
+  order:2
+
+}
+.leftArea{
+ /* float: left; 
+ padding: 10px; 
+ border: 2px solid red */
+ /* flex: 1; */
+ order:1
+
+}
+
+.barChart{
+  margin-top: 10px;
+}
+.pieChart{
+  margin-top: 10px;
+}
