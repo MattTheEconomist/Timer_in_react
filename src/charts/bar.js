@@ -3,47 +3,20 @@ import * as d3 from'd3';
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 
 
-export default function Bar({width, height, labels, values, title }){
-    const [newData, setNewData] = useState(false)
-    
+export default function Bar({width, height, labels, values, title, currentClass, baseColor, 
+    barColorList }){
 
     const ref = useRef()
 
-    let barWidth = 20
-    const margin = ({top: 20, right: 30, bottom: 30, left: 40, bar:60})
+    // console.log(barColorList)
 
-    useLayoutEffect(()=>{
-        d3.selectAll("g").remove()
-        d3.selectAll("rect").remove()
-
-    }, [labels, values])
     
-
-
-    useEffect(()=>{
-
-        drawChart()
-
-
-
-    }, [labels, values])
-
-
-
-
-
-    function drawChart(){
-        
+    useLayoutEffect(()=>{
 
         const svg = d3.select(ref.current)
-            .attr("width", width)
-            .attr("height", height)
-            .style("border", "1px solid black")
-
-
-
-
         let selection = svg.selectAll("rect").data(values)
+
+        
 
 
         selection
@@ -52,6 +25,76 @@ export default function Bar({width, height, labels, values, title }){
         .attr("y", (d) => height)
         .attr("height", 0)
         .remove()
+  
+
+
+        d3.selectAll("g").remove()
+        d3.selectAll("rect").remove()
+
+
+    }, [labels, values])
+    
+
+
+    useEffect(()=>{
+
+        drawChart()
+    }, [labels, values])
+
+    let barWidth = 20
+    const margin = ({top: 5, right: 30, bottom: 30, left: 40, bar:60})
+
+
+    let mdColors = ['hsla(204, 100%, 50%, 1)', 'hsla(360, 100%, 50%, 1)', 'hsla(113, 83%, 50%, 1)', 'hsla(26, 100%, 50%, 1)', 'hsla(158, 83%, 50%, 1)' ]
+
+
+    function colorSpectrum(i){
+        if(currentClass===3){
+            return mdColors[i]
+        }else{
+            return barColorList[i]
+            // return baseColor
+        }
+    }
+
+
+
+    function moveCertainBars(){
+            if(currentClass===1){
+                return 55
+            }else if(currentClass===2){
+                return 10
+            }else{
+                return 0
+            }
+    }
+
+
+
+    function drawChart(){
+
+        let productCount = labels.length
+
+        const svg = d3.select(ref.current)
+            .attr("width", width)
+            .attr("height", height)
+            .style("border", "1px solid black")
+
+        height = height -margin.bottom
+
+
+
+        let selection = svg.selectAll("rect").data(values)
+
+        
+
+
+        // selection
+        // .exit()
+        // .transition().duration(600)
+        // .attr("y", (d) => height)
+        // .attr("height", 0)
+        // .remove()
   
 
 
@@ -69,8 +112,10 @@ export default function Bar({width, height, labels, values, title }){
         .range([40,width-margin.right])
 
         let barScale = d3.scaleLinear()
-        .domain([0, values.length])
-        .range([60,width-10])
+        .domain([0, productCount])
+        .range([margin.bar,width-10])
+
+
 
 
 
@@ -85,7 +130,8 @@ export default function Bar({width, height, labels, values, title }){
         //xaxis
         svg.append("g")
             .attr("class", "axis")
-            .attr("transform", "translate(0," + (height-margin.bottom) + ")")
+            .attr("transform", "translate("+(0)+"," + (height-margin.top+5) + ")"     )
+            // .attr(`transform, translate(0, (${height-margin.bottom})  )`     )
            
             .call(xAxis)
             .selectAll("text")
@@ -95,32 +141,33 @@ export default function Bar({width, height, labels, values, title }){
         //yaxis
         svg.append("g")
             .attr("class", "axis")
-            .attr("transform", "translate(" + margin.left + ",0)")
+            .attr("transform", "translate(" + margin.left + ","+(margin.top) +")")
             .call(yAxis)
 
 
-        //data  - bars
-        selection
-        .enter()
-        .append("rect")
-        // .attr("x", (d, i) => (i*(width/values.length))+margin.left)
-        .attr("x", (d, i) => barScale(i) )
-        .attr("y", (d) => height - yScale(d)-margin.bottom)
-        .attr("width", barWidth)
-        .attr("height", d=> yScale(d))
-        .attr("class", "rect")
-        .attr("fill", "red")
-        .attr("id", d=> d)
-      
+         //cdata  - bars
+
+     
+            selection
+            .enter()
+            .append("rect")
+            // .attr("x", (d, i) => (i*(width/values.length))+margin.left)
+            .attr("x", (d, i) => barScale(i))
+            .attr("y", (d) => height - yScale(d)-margin.bottom)
+            .attr("width", barWidth)
+            .attr("height", d=> yScale(d))
+            .attr("class", "rect")
+            .attr("fill", (d,i)=>colorSpectrum(i))
+            .attr("id", d=> d)
+            .attr("transform", "translate(" + moveCertainBars()+ ","+(margin.bottom) +")")
 
 
-
-
-
+        
 
 
     }
-        
+
+      
    
             
 

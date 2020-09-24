@@ -46,3 +46,30 @@ code {
 .pieChart{
   margin-top: 10px;
 }
+#pieContainer{
+  border: 1px solid black
+}
+
+#pieTable{
+  padding: 20px
+}
+
+#TotalMDBtn{
+background-color: white;
+}
+#FirstClassBtn{
+  background-color: hsla(204, 100%, 50%, 1)  ;
+}
+#MarketingMailBtn{
+  background-color: hsla(360, 100%, 50%, 1) ;
+}
+#PeriodicalsBtn{
+  background-color: hsla(113, 83%, 50%, 1);
+}
+#PackageServicesBtn{
+  background-color:hsla(26, 100%, 50%, 1) ;
+}
+#ServicesBtn{
+  background-color: hsla(158, 83%, 50%, 1) ;
+}
+
