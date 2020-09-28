@@ -3,24 +3,16 @@ import { sum } from 'd3';
 
 import React, {useState, useEffect, useRef} from 'react';
 
-export default function Pie({size, values, title, percents}){
+export default function Pie({size, values, title, percents, pieDataColors}){
     
-    const [fractions, setFractions] = useState([])
-
 
     const ref = useRef()
 
-    //used for table 
-    let sumRev ; 
-    let pctList =[]
 
 
 
     useEffect(()=>{
         const svg = d3.select(ref.current)
-            //      .attr("width", 300)
-            //     .attr("height", 200)
-         
 
 
             drawChart()
@@ -46,6 +38,7 @@ export default function Pie({size, values, title, percents}){
                         .attr("width", width)
                         .attr("height", height)
                         // .style("border", "1px solid black")
+                        
 
             
         const innerRadius  = size/3
@@ -63,13 +56,17 @@ export default function Pie({size, values, title, percents}){
                   .attr("class", "arc")
                   .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
                   .attr("id", (d,i)=>{return d})
+                  
 
         
             arcs.append("path")
             .attr("fill", function(d, i) {
-                return color(i);
+                // return color(i);
+                return pieDataColors[i]
             })
             .attr("d", arc)
+            .attr("stroke", "black")
+  
 
             // arcs.append("text")               
             //     .attr("transform", d=>{
@@ -90,15 +87,15 @@ export default function Pie({size, values, title, percents}){
     <h5>{title}</h5>
 
     <div id="pieContainer">
-            <svg ref={ref}/>
-            <tbody id="pieTable">
+            <svg ref={ref} style={{marginTop:"1px", marginLeft: "2px"}}/>
+            <tbody id="pieTable"  >
                 <tr>
-                    <td>UnderWater</td>
-                    <td>   {'  '+percents[0]}</td>
+                    <td style={{paddingLeft: "100px"}}>UnderWater</td>
+                    <td className="pctCol" style={{paddingLeft: "10px"}}>{percents[0]}</td>
                 </tr>
                 <tr>
-                    <td>OverWater</td>
-                    <td>{'  '+percents[1]}</td>
+                    <td style={{paddingLeft: "100px"}}>OverWater</td>
+                    <td className="pctCol" style={{paddingLeft: "10px"}}>{percents[1]}</td>
                 </tr>
             </tbody>
 

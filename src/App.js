@@ -73,13 +73,8 @@ function App() {
         //underwater products have less saturation 
         let barColorList = []
 
-
-        function generateColorList(){
-        for(let i=0; i<ccData.length; i++){
-          if(ccData[i]>100){
-            barColorList.push(baseColor[selectedClass])
-          }else{
-            let temp = baseColor[selectedClass]
+        function generateUnderwaterColor(colorIn){
+          let temp = colorIn
             temp = String(temp)
              temp = temp.toString()
              temp = temp.split(",")
@@ -93,7 +88,19 @@ function App() {
             newSaturation = newSaturation.toString()+"%"
             temp[1] = newSaturation
             temp = temp.join(",")
-            barColorList.push(temp)
+            return temp
+
+        }
+
+
+        function generateColorList(){
+        for(let i=0; i<ccData.length; i++){
+          if(ccData[i]>100){
+            barColorList.push(baseColor[selectedClass])
+          }else{
+
+
+            barColorList.push(generateUnderwaterColor(baseColor[selectedClass]))
           }
         }
       }
@@ -122,13 +129,54 @@ function App() {
         overWater = overWaterTemp.map(row=> row.Revenue).reduce((a,b)=>a+b)
       }
 
-      // // pie data component wont let me reformat data once its passed in :( 
-      let pieData = [underWater, overWater]
+     // pie data component wont let me reformat data once its passed in :( 
+
+      let pieData = []
+      let pieDataPct = []
+
+      if(selectedClass==="TotalMarketDominant"){
+        let over2 = fullData.filter(row=>row.CostCoverage>1)
+        let over3 = over2.map(row=>row.Revenue).reduce((a,b)=>a+b)
+        let revFromTotalRowsOver = 45255
+        over3 = over3 - revFromTotalRowsOver
+        let totalMdOver = over3
+        
+
+        let under2 = fullData.filter(row=>row.CostCoverage<1)
+        let under3 = under2.map(row=>row.Revenue).reduce((a,b)=>a+b)
+        let revFromTotalRowsUnder = 1194
+        under3 = under3 - revFromTotalRowsUnder 
+        let totalMdUnder = under3 
+
+        pieData = [totalMdUnder, totalMdOver]
+        let sumRev = [totalMdUnder+ totalMdOver]
+        pieDataPct = [totalMdUnder/sumRev, totalMdOver/sumRev]
+        pieDataPct  = pieDataPct.map(val=>(val.toFixed(2)*100)+'%')
+
+
+      }else{
+      pieData = [underWater, overWater]
       let sumRev = [overWater+underWater]
-      let pieDataPct = [underWater/sumRev, overWater/sumRev]
+       pieDataPct = [underWater/sumRev, overWater/sumRev]
       pieDataPct  = pieDataPct.map(val=>(val.toFixed(2)*100)+'%')
 
+      }
       
+
+      //pie color scheme matches that of bar charts
+      let pieDataColors = []
+      if(selectedClass==="TotalMarketDominant"){
+        let mdColorOverwater = 'hsla(204, 9%, 50%, 1)' 
+        let mdColorUnderwater ='hsla(204, 9%, 10%, 1)'
+
+        pieDataColors.push( mdColorOverwater)
+        pieDataColors.push(mdColorUnderwater)
+
+      }else{
+        pieDataColors.push(generateUnderwaterColor(baseColor[selectedClass]))
+        pieDataColors.push(baseColor[selectedClass])
+      }
+
 
 
       function handleClassSelect(e){
@@ -160,15 +208,17 @@ function App() {
     
     <div className="chartArea">
         <div className="leftArea">
-            <Pie className="pieChart" size={150} values={pieData} percents={pieDataPct} title={titles[selectedClass].underPie}/>
+            <Pie className="pieChart" size={135} values={pieData} percents={pieDataPct} title={titles[selectedClass].underPie}  pieDataColors = {pieDataColors}/>
+            <Bar   className ="barChart" width={400} height={200} labels={productData} values={ccData} title={titles[selectedClass].ccBar} currentClass={specialClass} baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
 
-            <Bar   className ="barChart" width={400} height={200} labels={productData} values={volData} title={titles[selectedClass].volBar} currentClass={specialClass}baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
+           
 
       </div>
         <div className="barArea">
 
         <Bar   className ="barChart" width={400} height={200} labels={productData} values={revData} title={titles[selectedClass].revBar} currentClass={specialClass} baseColor={baseColor[selectedClass]} barColorList={barColorList}/>
-          <Bar   className ="barChart" width={400} height={200} labels={productData} values={ccData} title={titles[selectedClass].ccBar} currentClass={specialClass} baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
+        <Bar   className ="barChart" width={400} height={200} labels={productData} values={volData} title={titles[selectedClass].volBar} currentClass={specialClass}baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
+          
           
       </div>
         <div className="barArea">
