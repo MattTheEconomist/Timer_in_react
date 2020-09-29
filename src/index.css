@@ -42,18 +42,34 @@ code {
 
 .barChart{
   margin-top: 10px;
+  
 }
 .pieChart{
   margin-top: 10px;
 }
 #pieContainer{
-  border: 1px solid black
+  /* border: 1px solid black */
 }
 
 #pieTable{
-  padding: 20px;
-  margin-top: 20px
+  /* padding: 20px;
+  margin-top: 20px */
 }
+#tooltip{
+  position: absolute;
+  height: 35x;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  font-size: 0.75em;
+  border-radius: 10px;
+}
+
+#tooltip.hidden {
+  display: none;
+ }
+
+
 
 #TotalMDBtn{
 background-color: white;

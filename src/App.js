@@ -33,12 +33,12 @@ function App() {
   let titles = {
     //what graphs go with MD? 
     // MarketDominant:{}, 
-    MarketingMail:{underPie: 'Marketing Mail % Revenue Underwater', ccBar: 'Marketing Mail Cost Coverage (%)', revBar: 'Marketing Mail Revenue (Billions)' , volBar: 'Marketing Mail Volume  (Billions)'},
-    FirstClass:{underPie: 'First Class % Revenue Underwater', ccBar: 'First Class Cost Coverage (%)', revBar: 'First Class Revenue (Billions)', volBar: 'First Class Volume (Billions)' },
-    Periodicals:{underPie: 'Periodicals % Revenue Underwater' , ccBar: 'Periodicals Cost Coverage (%)', revBar: 'Periodicals Revenue (Billions)' , volBar: 'Periodicals Volume (Billions)'},
-    PackageServices:{underPie: 'Package Services % Revenue Underwater', ccBar:'Package Services Cost Coverage (%)', revBar: 'Package Revenue (Billions)', volBar: 'Package Services Volume (Billions)'},
-    Services:{underPie: 'Services % Revenue Underwater', ccBar:'Services Cost Coverage (%)', revBar: 'Services Revenue (Billions)', volBar: 'Services Volume (Billions)'},
-    TotalMarketDominant:{underPie: 'Market Dominant % Revenue Underwater', ccBar:'Market Dominant Cost Coverage (%)', revBar: 'Market Dominant Revenue (Billions)', volBar: 'Market Dominant Volume (Billions)'},
+    MarketingMail:{underPie: 'Marketing Mail % Revenue Underwater', ccBar: 'Marketing Mail Cost Coverage (%)', revBar: 'Marketing Mail Revenue ($Billions)' , volBar: 'Marketing Mail Volume  (Billions)'},
+    FirstClass:{underPie: 'First Class % Revenue Underwater', ccBar: 'First Class Cost Coverage (%)', revBar: 'First Class Revenue ($Billions)', volBar: 'First Class Volume (Billions)' },
+    Periodicals:{underPie: 'Periodicals % Revenue Underwater' , ccBar: 'Periodicals Cost Coverage (%)', revBar: 'Periodicals Revenue ($Billions)' , volBar: 'Periodicals Volume (Billions)'},
+    PackageServices:{underPie: 'Package Services % Revenue Underwater', ccBar:'Package Services Cost Coverage (%)', revBar: 'Package Revenue ($Billions)', volBar: 'Package Services Volume (Billions)'},
+    Services:{underPie: 'Services % Revenue Underwater', ccBar:'Services Cost Coverage (%)', revBar: 'Services Revenue ($Billions)', volBar: 'Services Volume (Billions)'},
+    TotalMarketDominant:{underPie: 'Market Dominant % Revenue Underwater', ccBar:'Market Dominant Cost Coverage (%)', revBar: 'Market Dominant Revenue ($Billions)', volBar: 'Market Dominant Volume (Billions)'},
   }
 
   
@@ -184,6 +184,8 @@ function App() {
         setSelectedClass(e.target.value.split(' ').join(''))
       }
 
+      
+
 
 
 
@@ -209,15 +211,15 @@ function App() {
     <div className="chartArea">
         <div className="leftArea">
             <Pie className="pieChart" size={135} values={pieData} percents={pieDataPct} title={titles[selectedClass].underPie}  pieDataColors = {pieDataColors}/>
-            <Bar   className ="barChart" width={400} height={200} labels={productData} values={ccData} title={titles[selectedClass].ccBar} currentClass={specialClass} baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
+            <Bar   className ="barChart" width={400} height={200} labels={productData} values={ccData} title={titles[selectedClass].ccBar} currentClass={specialClass} baseColor={baseColor[selectedClass]}  barColorList={barColorList} units={'percent'}/>
 
            
 
       </div>
         <div className="barArea">
 
-        <Bar   className ="barChart" width={400} height={200} labels={productData} values={revData} title={titles[selectedClass].revBar} currentClass={specialClass} baseColor={baseColor[selectedClass]} barColorList={barColorList}/>
-        <Bar   className ="barChart" width={400} height={200} labels={productData} values={volData} title={titles[selectedClass].volBar} currentClass={specialClass}baseColor={baseColor[selectedClass]}  barColorList={barColorList}/>
+        <Bar   className ="barChart" width={400} height={200} labels={productData} values={revData} title={titles[selectedClass].revBar} currentClass={specialClass} baseColor={baseColor[selectedClass]} barColorList={barColorList} units={'dollars'}/>
+        <Bar   className ="barChart" width={400} height={200} labels={productData} values={volData} title={titles[selectedClass].volBar} currentClass={specialClass}baseColor={baseColor[selectedClass]}  barColorList={barColorList} units={'pieces'}/>
           
           
       </div>

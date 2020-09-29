@@ -83,18 +83,19 @@ export default function Pie({size, values, title, percents, pieDataColors}){
     }
 
     return <> 
-
+     <div id="pieContainer" style={{ marginBottom: "75px", marginLeft: "10px" }}>
     <h5>{title}</h5>
+   
 
-    <div id="pieContainer">
-            <svg ref={ref} style={{marginTop:"1px", marginLeft: "2px"}}/>
-            <tbody id="pieTable"  >
+
+            <svg ref={ref} style={{marginTop:"1px", marginLeft: "0px"}}/>
+            <tbody id="pieTable" style={{position:"absolute", top:"130px"}} >
                 <tr>
-                    <td style={{paddingLeft: "100px"}}>UnderWater</td>
+                    <td style={{paddingLeft: "175px", marginBottom: "200px", }}>UnderWater</td>
                     <td className="pctCol" style={{paddingLeft: "10px"}}>{percents[0]}</td>
                 </tr>
                 <tr>
-                    <td style={{paddingLeft: "100px"}}>OverWater</td>
+                    <td style={{paddingLeft: "175px" , marginBottom: "200px"}}>OverWater</td>
                     <td className="pctCol" style={{paddingLeft: "10px"}}>{percents[1]}</td>
                 </tr>
             </tbody>

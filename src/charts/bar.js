@@ -4,7 +4,7 @@ import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 
 
 export default function Bar({width, height, labels, values, title, currentClass, baseColor, 
-    barColorList }){
+    barColorList, units }){
 
     const ref = useRef()
 
@@ -30,7 +30,8 @@ export default function Bar({width, height, labels, values, title, currentClass,
 
         d3.selectAll("g").remove()
         d3.selectAll("rect").remove()
-
+        
+  
 
     }, [labels, values])
     
@@ -78,7 +79,7 @@ export default function Bar({width, height, labels, values, title, currentClass,
         const svg = d3.select(ref.current)
             .attr("width", width)
             .attr("height", height)
-            .style("border", "1px solid black")
+            // .style("border", "1px solid black")
 
         height = height -margin.bottom
 
@@ -116,6 +117,25 @@ export default function Bar({width, height, labels, values, title, currentClass,
         .range([margin.bar,width-10])
 
 
+        function yAxisUnits(units){
+            if(units==="dollars"){
+                return( d=>{return '$' + (d)})
+            }
+            else if(units==="percent"){
+                return(d=>{return (d)+'%'})
+            }
+            else{
+                return (d=>{return (d)})
+            }
+        }
+            
+        //     let percentFormat = 
+        //     let piecesFormat = d=>{return (d)}
+        // }
+
+
+
+
 
 
 
@@ -126,6 +146,7 @@ export default function Bar({width, height, labels, values, title, currentClass,
 
         let yAxis = d3.axisLeft()
                     .scale(yAxisScale)
+                    .tickFormat(yAxisUnits(units))
 
         //xaxis
         svg.append("g")
@@ -160,6 +181,9 @@ export default function Bar({width, height, labels, values, title, currentClass,
             .attr("fill", (d,i)=>colorSpectrum(i))
             .attr("id", d=> d)
             .attr("transform", "translate(" + moveCertainBars()+ ","+(margin.bottom) +")")
+     
+
+
 
 
         
@@ -173,9 +197,16 @@ export default function Bar({width, height, labels, values, title, currentClass,
 
             
     return <> 
-        <h5>{title}</h5>
-        <svg ref={ref}/>
-        {/* <svg /> */}
+
+        <div className="barContainer" style={{ marginLeft: "4px"}}>
+                <div id="tooltip" class="hidden">
+                            <p><strong>Important Label Heading</strong></p>
+                            <p><span id="value">100</span>%</p>
+                </div>
+            <h5>{title}</h5>
+            <svg ref={ref} style={{ marginRight: "4px"}}/>
+        </div>
+        
            
     
     </>
