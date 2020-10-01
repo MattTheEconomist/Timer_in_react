@@ -1,9 +1,9 @@
 import * as d3 from'd3'; 
 
-import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
+import React, { useEffect, useRef, useLayoutEffect} from 'react';
 
 
-export default function Bar({width, height, labels, values, title, currentClass, baseColor, 
+export default function Bar({width, height, labels, values, title, currentClass,
     barColorList, units }){
 
     const ref = useRef()
@@ -54,7 +54,6 @@ export default function Bar({width, height, labels, values, title, currentClass,
             return mdColors[i]
         }else{
             return barColorList[i]
-            // return baseColor
         }
     }
 
@@ -87,15 +86,7 @@ export default function Bar({width, height, labels, values, title, currentClass,
 
         let selection = svg.selectAll("rect").data(values)
 
-        
 
-
-        // selection
-        // .exit()
-        // .transition().duration(600)
-        // .attr("y", (d) => height)
-        // .attr("height", 0)
-        // .remove()
   
 
 
@@ -129,9 +120,7 @@ export default function Bar({width, height, labels, values, title, currentClass,
             }
         }
             
-        //     let percentFormat = 
-        //     let piecesFormat = d=>{return (d)}
-        // }
+
 
 
 
@@ -199,10 +188,9 @@ export default function Bar({width, height, labels, values, title, currentClass,
     return <> 
 
         <div className="barContainer" style={{ marginLeft: "4px"}}>
-                <div id="tooltip" class="hidden">
-                            <p><strong>Important Label Heading</strong></p>
-                            <p><span id="value">100</span>%</p>
-                </div>
+
+
+   
             <h5>{title}</h5>
             <svg ref={ref} style={{ marginRight: "4px"}}/>
         </div>
