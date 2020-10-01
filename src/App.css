@@ -1,0 +1,26 @@
+#appContainer{
+color:black; 
+display:flex; 
+flex-flow: row wrap; 
+
+}
+
+#appContainer > *{
+flex: 1 100%;
+}
+
+#sidebarContainer{
+  flex:1 ; 
+  background-color: blueviolet;
+  width: 20%; 
+  height: 100vh; 
+  position: fixed
+}
+#clockContainer{
+  flex:2;
+background-color: cornflowerblue;
+width: 70%;
+height: 100vh; 
+text-align: center;
+/* position: fixed */
+}
