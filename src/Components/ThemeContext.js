@@ -7,7 +7,7 @@ function ThemeProvider(props) {
   const [themeSecondary, setThemeSecondary] = useState("cool")
 
   function toggleTheme(){
-    if (theme=="blues"){
+    if (theme==="blues"){
         setTheme("reds")
         setThemeSecondary("warm")
     }else{

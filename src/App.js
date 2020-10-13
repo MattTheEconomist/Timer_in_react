@@ -3,7 +3,8 @@ import "./App.css";
 import Clock from "./Components/Clock.js";
 import {ThemeContext, ThemeProvider} from './Components/ThemeContext.js'
 import ThemeButton from './Components/ThemeButton'
-import ButtonTime from './Components/TimeAdjButton'
+import ButtonTime from './Components/TimeAdjButton'; 
+import TimeLeftBar from './Components/TimeLeftBar.js'
 
 function App() {
   const [timeMin, setTimeMin] = useState(5);
@@ -47,6 +48,10 @@ function App() {
           {" "}
           <h3>Countdown Clock</h3>
           <Clock startTime={timeSec} />
+
+          
+
+
         </div>
       </div>
     </>

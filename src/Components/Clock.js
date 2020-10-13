@@ -2,7 +2,8 @@ import clsx from 'clsx'
 import React, { useState, useRef, useEffect, useContext } from "react";
 import RunningViz from "./RunningViz.js";
 import WarningViz from "./WarningViz.js";
-import {ThemeContext} from './ThemeContext.js'
+import {ThemeContext} from './ThemeContext.js'; 
+import TimeLeftBar from './TimeLeftBar.js'
 
 
 
@@ -20,8 +21,6 @@ export default function Clock(props) {
       if(status){
         setRunningTimeSec(startTime)
       }
-
-    
   }, [startTime]);
 
   const classes = clsx({
@@ -97,6 +96,8 @@ let runningTimeColor = {
 
         <button onClick={handleResetClick}> Reset </button>
         <WarningViz status={status} timeLeft={runningTimeSec} />
+
+        <TimeLeftBar timeLeft={runningTimeSec} startTime={startTime} status={status}/>
       </div>
     </>
   );

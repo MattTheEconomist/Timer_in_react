@@ -3,6 +3,7 @@ import React, { useState, useEffect} from "react";
 export default function RunningViz(props) {
   const { status, timeLeft } = props;
 
+
   const [runningColor, setRunningColor] = useState(140);
   const [colorDirection, setColorDirection] = useState("down");
 
