@@ -7,11 +7,11 @@ import * as serviceWorker from "./serviceWorker";
 import { ThemeContext, ThemeProvider } from "./Components/ThemeContext.js";
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider>
       <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );
 

@@ -50,7 +50,7 @@ export default function RunningViz(props) {
 
   return (
     <>
-      <div style={divColor} id="timeUnderline"></div>
+      <div style={divColor} id="runningViz"></div>
 
       {/* <p>{!status ? "Clock Running" : "Clock Stopped"}</p> */}
     </>

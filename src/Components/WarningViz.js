@@ -7,15 +7,6 @@ export default function WarningViz(props) {
   const [runningColor, setRunningColor] = useState(56);
   const [hideWarningDiv, setHideWarningDiv] = useState('hidden')
 
-  // if(!status){
-  //     setWarningText('')
-  // }
-
-
-
-  // if(!status){
-  //     return null
-  // }
 
   useEffect(()=>{
       if(!status && timeLeft<60){
@@ -23,7 +14,6 @@ export default function WarningViz(props) {
       }else{
           setHideWarningDiv('hidden')
       }
-    //   console.log(hideWarningDiv)
   },[status, timeLeft])
 
 

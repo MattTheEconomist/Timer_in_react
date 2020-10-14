@@ -82,13 +82,20 @@ let runningTimeColor = {
   color: 'black'
 }
 
+if(runningTimeSec<0){
+  setRunningTimeSec(0)
+}
+
   
   return (
     <>
-      <div className={classes}>
+      <div className={classes} id='clockID'>
       {/* <div> */}
         <p  style={runningTimeSec===0?timeOutColor :runningTimeColor}>{formatTime(runningTimeSec)}</p>
         <RunningViz status={status} timeLeft={runningTimeSec} />
+        <br></br>
+        <TimeLeftBar timeLeft={runningTimeSec} startTime={startTime} status={status}/>
+        <br></br>
         <button onClick={startButtonFunction}>
           {" "}
           {status ? "Start" : "Stop"}{" "}
@@ -97,7 +104,6 @@ let runningTimeColor = {
         <button onClick={handleResetClick}> Reset </button>
         <WarningViz status={status} timeLeft={runningTimeSec} />
 
-        <TimeLeftBar timeLeft={runningTimeSec} startTime={startTime} status={status}/>
       </div>
     </>
   );

@@ -24,13 +24,23 @@ height: 100vh;
 text-align: center;
 /* position: fixed */
 }
+/* #clockID{
+  position: absolute;
+  left: 40%;
+} */
 
-#timeUnderline{
+#timeOutput{
+  
+}
+
+#runningViz{
   /* background-color: cyan; */
   flex:3;
-  width: 400px;
+  width: 300px;
   height: 3px; 
-margin:auto
+  position: absolute;
+  left: 40%; 
+/* margin:auto */
 }
 
 #warningDiv{
@@ -46,10 +56,17 @@ background-color:palevioletred;
   background-color: rgb(122, 201, 190);
 }
 .warm{
-  background-color: rgb(255, 145, 0);
+  background-color: hsla(45, 100%, 50%, 1);
   
 }
 .cool{
-  background-color: rgb(121, 230, 245);
+  background-color:hsla(229, 100%, 50%, 1);
   
+}
+
+.pinks{
+  background-color:hsla(344, 100%, 50%, 1);
+}
+.purps{
+background-color: hsla(272, 100%, 50%, 1);
 }
