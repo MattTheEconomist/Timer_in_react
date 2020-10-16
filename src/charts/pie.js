@@ -68,15 +68,6 @@ export default function Pie({size, values, title, percents, pieDataColors}){
             .attr("stroke", "black")
   
 
-            // arcs.append("text")               
-            //     .attr("transform", d=>{
-            //         return "translate(" +arc.centroid(d) +")"
-            //     })
-            //     .attr("text-anchor", "middle")
-            //     .text(d=> d)
-            //     .data(labels)
-            //     .enter()
-                
 
 
 
