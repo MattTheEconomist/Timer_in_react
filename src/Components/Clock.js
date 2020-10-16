@@ -91,17 +91,17 @@ if(runningTimeSec<0){
     <>
       <div className={classes} id='clockID'>
       {/* <div> */}
-        <p  style={runningTimeSec===0?timeOutColor :runningTimeColor}>{formatTime(runningTimeSec)}</p>
+        <p  id="timeOutput" style={runningTimeSec===0?timeOutColor :runningTimeColor}>{formatTime(runningTimeSec)}</p>
         <RunningViz status={status} timeLeft={runningTimeSec} />
         <br></br>
         <TimeLeftBar timeLeft={runningTimeSec} startTime={startTime} status={status}/>
         <br></br>
-        <button onClick={startButtonFunction}>
+        <button onClick={startButtonFunction} id="startButton">
           {" "}
           {status ? "Start" : "Stop"}{" "}
         </button>
 
-        <button onClick={handleResetClick}> Reset </button>
+        <button onClick={handleResetClick} id="resetButton"> Reset </button>
         <WarningViz status={status} timeLeft={runningTimeSec} />
 
       </div>

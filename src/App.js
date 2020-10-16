@@ -34,15 +34,11 @@ function App() {
       <div id="appContainer">
         <div id="sidebarContainer">
 
-          <ButtonTime action={handleInc} value={incText}/>
-          <ButtonTime action={handleDec} value={decText}/>
-
-
-
+          <ButtonTime action={handleInc} value={incText} id="incButton" />
+          <ButtonTime action={handleDec} className='poop' value={decText} id="decButton" />
+          <p id="startingTimeText">Starting Time</p>
+          <p id="startingTimeNumber">{timeMin}</p>
           <ThemeButton value={"Toggle Theme"}/>
-         
-          <p>Starting Time</p>
-          <p>{timeMin}</p>
         </div>
         <div id="clockContainer">
           {" "}

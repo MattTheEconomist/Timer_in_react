@@ -6,6 +6,16 @@ import {ThemeContext} from "./ThemeContext.js";
 export default function ButtonTime(props) {
 //pass down time increment function from props!
 
+const {action, value} = props
+let idValue = ''; 
+
+if(value==="+"){
+    idValue="plusButton"
+}else if(value==="-"){
+    idValue="minusButton"
+
+}
+
 
 
 
@@ -19,5 +29,5 @@ export default function ButtonTime(props) {
         warm: context.themeSecondary==="warm"
     })
 
-return <button className={classes} onClick={props.action}>{props.value}</button>;
+return <button className={classes} onClick={action} id={idValue}>{value}</button>;
 }

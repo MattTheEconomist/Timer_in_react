@@ -13,5 +13,5 @@ export default function Button(props) {
         reds: context.theme==="reds"
     })
 
-    return <button className={classes} onClick={() => context.toggleTheme()}>Toggle Theme </button>;
+    return <button id="themeButton" className={classes} onClick={() => context.toggleTheme()}>Toggle Theme </button>;
 }
